@@ -61,7 +61,3 @@ export function calculateComplexity(ast: Program): int {
 
 	return complexity;
 }
-
-export default function getComplexityMsg(): object {
-
-}

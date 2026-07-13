@@ -40,3 +40,28 @@ export function getAST(code: string): Program | false {
 		return false
 	}
 }
+
+export function calculateComplexity(ast: Program): int {
+	let complexity = 1;
+
+	walk.simple(ast, {
+		IfStatement() { complexity++ },
+		ConditionalExpression() { complexity++ },
+		LogicalExpression() { complexity++ },
+		SwitchStatement() { complexity++ },
+		SwitchCase() { complexity++ }, // case 1: (each case is a decision!)
+		CatchClause() { complexity++ }, // catch (error) { } 
+		// loops
+		ForStatement() { complexity++ },
+		ForInStatement() { complexity++ },
+		ForOfStatement() { complexity++ },
+		WhileStatement() { complexity++ },
+		DoWhileStatement() { complexity++ }
+	})
+
+	return complexity;
+}
+
+export default function getComplexityMsg(): object {
+
+}

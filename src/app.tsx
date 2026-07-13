@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'preact/hooks'
-import { getAST } from './core/codeComplex.ts';
+import { getAST, calculateComplexity } from './core/codeComplex.ts';
 
 export default function App() {
   const [code, setCode] = useState('');
 
   // run on every code change
   useEffect(() => {
-    console.log(getAST(JSON.stringify(code, null, 2)))
+    console.log( `Complexity num: ${calculateComplexity(getAST(code))}` )
   }, [code])
     
   return (
